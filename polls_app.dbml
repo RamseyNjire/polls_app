@@ -1,0 +1,56 @@
+Project polls_app (
+    database_type: 'PostgreSQL'
+    Note: '''
+        This is a polls app. It will contain a few models and associated tables:
+        - Users, which can create and respond to polls (they can't respon to their own polls, though).
+        - Polls, which have mutliple questions per poll.
+        - Questions, which have multiple answer choices per question.
+        - Answer choices, which users can pick when responding to a question in a poll.
+        - Responses, which connect users and questions. A user responds to a question by picking an answer choice.
+    '''
+)
+
+Table users {
+    id int [pk, increment]
+    username varchar [unique]
+}
+
+Table polls {
+    id int [pk]
+    user_id int [ref: > users.id]
+    title varchar
+    Note: 'A user can have many polls'
+    Indexes {
+        user_id [unique]
+    }
+}
+
+Table questions {
+    id int [pk]
+    poll_id int [ref: > polls.id]
+    text text
+    Note: 'A poll can have many questions'
+    Indexes {
+        poll_id [unique]
+    }
+}
+
+Table answerchoices {
+    id int [pk]
+    question_id int [ref: > qustions.id]
+    text text
+    Note: 'A question can have many answer choices'
+    Indexes {
+        question_id [unique]
+    }
+}
+
+Table responses {
+    id int [pk]
+    question_id int [ref: > questions.id]
+    user_id int [ref: > users.id]
+    Note: 'A response connects a user to the question they answer in a poll'
+    Indexes {
+        (question_id, user_id) [unique]
+    }
+}
