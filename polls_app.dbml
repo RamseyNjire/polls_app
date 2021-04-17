@@ -1,4 +1,4 @@
-Project polls_app (
+Project polls_app {
     database_type: 'PostgreSQL'
     Note: '''
         This is a polls app. It will contain a few models and associated tables:
@@ -8,7 +8,7 @@ Project polls_app (
         - Answer choices, which users can pick when responding to a question in a poll.
         - Responses, which connect users and questions. A user responds to a question by picking an answer choice.
     '''
-)
+}
 
 Table users {
     id int [pk, increment]
@@ -37,7 +37,7 @@ Table questions {
 
 Table answerchoices {
     id int [pk]
-    question_id int [ref: > qustions.id]
+    question_id int [ref: > questions.id]
     text text
     Note: 'A question can have many answer choices'
     Indexes {
