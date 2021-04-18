@@ -1,6 +1,6 @@
-class CreateAnswerchoicesTable < ActiveRecord::Migration[6.1]
+class CreateAnswerchoices < ActiveRecord::Migration[6.1]
   def change
-    create_table :answerchoices_tables do |t|
+    create_table :answerchoices do |t|
       t.text :text
       t.integer :question_id
       t.index :question_id, unique: true

@@ -1,6 +1,6 @@
-class CreatePollsTable < ActiveRecord::Migration[6.1]
+class CreatePolls < ActiveRecord::Migration[6.1]
   def change
-    create_table :polls_tables do |t|
+    create_table :polls do |t|
       t.string :title
       t.integer :user_id
 
