@@ -47,10 +47,10 @@ Table answerchoices {
 
 Table responses {
     id int [pk]
-    question_id int [ref: > questions.id]
-    user_id int [ref: > users.id]
+    answer_choice_id int [ref: > answerchoices.id]
+    respondent_id int [ref: > users.id]
     Note: 'A response connects a user to the question they answer in a poll'
     Indexes {
-        (question_id, user_id) [unique]
+        (answer_choice_id, respondent_id) [unique]
     }
 }
