@@ -8,7 +8,7 @@ class Response < ApplicationRecord
 
     belongs_to(
         :answer_choice,
-        class_name: 'AnswerChoice',
+        class_name: 'Answerchoice',
         foreign_key: :answer_choice_id,
         primary_key: :id
     )
