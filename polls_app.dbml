@@ -49,7 +49,7 @@ Table responses {
     id int [pk]
     answer_choice_id int [ref: > answerchoices.id]
     respondent_id int [ref: > users.id]
-    Note: 'A response connects a user to the question they answer in a poll'
+    Note: 'A response connects a user to the answer choice they pick for a question in a poll'
     Indexes {
         (answer_choice_id, respondent_id) [unique]
     }
