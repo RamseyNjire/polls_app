@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_18_121132) do
+ActiveRecord::Schema.define(version: 2021_04_18_131911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_121132) do
     t.integer "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["question_id"], name: "index_answerchoices_on_question_id", unique: true
+    t.index ["question_id"], name: "index_answerchoices_on_question_id"
   end
 
   create_table "polls", force: :cascade do |t|
@@ -28,15 +28,15 @@ ActiveRecord::Schema.define(version: 2021_04_18_121132) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_polls_on_user_id", unique: true
+    t.index ["user_id"], name: "index_polls_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "title"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_questions_on_user_id", unique: true
+    t.text "text"
+    t.integer "poll_id"
+    t.index ["poll_id"], name: "index_questions_on_poll_id"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -45,14 +45,6 @@ ActiveRecord::Schema.define(version: 2021_04_18_121132) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["answer_choice_id", "respondent_id"], name: "index_responses_on_answer_choice_id_and_respondent_id", unique: true
-  end
-
-  create_table "responses_tables", force: :cascade do |t|
-    t.integer "answer_choice_id"
-    t.integer "respondent_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["answer_choice_id", "respondent_id"], name: "index_responses_tables_on_answer_choice_id_and_respondent_id"
   end
 
   create_table "users", force: :cascade do |t|

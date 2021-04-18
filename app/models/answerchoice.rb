@@ -1,4 +1,4 @@
-class AnswerChoice < ApplicationRecord
+class Answerchoice < ApplicationRecord
     belongs_to(
         :question,
         class_name: 'Question',

@@ -1,4 +1,4 @@
-class user < ApplicationRecord
+class User < ApplicationRecord
     has_many(
         :authored_polls,
         class_name: 'Poll',
