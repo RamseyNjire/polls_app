@@ -1,5 +1,6 @@
 class Response < ApplicationRecord
-    validate :respondent_already_answered
+    validate :respondent_already_answered?
+    validate :respondent_is_author?
     belongs_to(
         :respondent,
         class_name: 'User',
@@ -27,6 +28,14 @@ class Response < ApplicationRecord
     def respondent_already_answered?
         if sibling_responses.any?{ |response| response.respondent_id == self.respondent_id }
             errors[:response] << 'already submitted for this question'
+        else
+            return
+        end
+    end
+
+    def respondent_is_author?
+        if self.question.poll.author == self.respondent_id
+            error[:author] << 'cannot respond to own poll questions'
         else
             return
         end
