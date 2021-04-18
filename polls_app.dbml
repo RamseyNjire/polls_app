@@ -21,7 +21,7 @@ Table polls {
     title varchar
     Note: 'A user can have many polls'
     Indexes {
-        user_id [unique]
+        user_id
     }
 }
 
@@ -31,7 +31,7 @@ Table questions {
     text text
     Note: 'A poll can have many questions'
     Indexes {
-        poll_id [unique]
+        poll_id
     }
 }
 
@@ -41,7 +41,7 @@ Table answerchoices {
     text text
     Note: 'A question can have many answer choices'
     Indexes {
-        question_id [unique]
+        question_id
     }
 }
 
