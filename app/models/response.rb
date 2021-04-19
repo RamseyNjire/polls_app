@@ -34,8 +34,8 @@ class Response < ApplicationRecord
     end
 
     def respondent_is_author?
-        if self.question.poll.author == self.respondent_id
-            error[:author] << 'cannot respond to own poll questions'
+        if self.question.poll.author.id == self.respondent_id
+            errors[:author] << 'cannot respond to own poll questions'
         else
             return
         end

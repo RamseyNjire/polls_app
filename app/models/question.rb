@@ -9,13 +9,13 @@ class Question < ApplicationRecord
 
     has_many(
         :answer_choices,
-        class_name: 'AnswerChoice',
+        class_name: 'Answerchoice',
         foreign_key: :question_id,
         primary_key: :id
     )
 
     has_many(
-        :reponses,
+        :responses,
         through: :answer_choices,
         source: :responses
     )
